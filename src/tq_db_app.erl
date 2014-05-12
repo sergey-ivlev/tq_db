@@ -14,10 +14,9 @@
 start(_StartType, _StartArgs) ->
     {ok, Pools} = application:get_env(tq_db, pools),
     lists:foreach(
-      fun({PoolName, Driver, Args}) ->
-              Driver:start_pool(PoolName, Args)
-      end, Pools),
+        fun({PoolName, Driver, SizeArgs, WorkerArgs}) ->
+            Driver:start_pool(PoolName, SizeArgs, WorkerArgs)
+        end, Pools),
     tq_db_sup:start_link().
-
 stop(_State) ->
     ok.
