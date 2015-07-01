@@ -1,6 +1,6 @@
 -module(tq_db_driver).
 
--type model() :: tuple(any()).
+-type model() :: {any()}.
 
 -callback start_pool(PoolName :: atom(), Opts :: any()) ->
     ok |
